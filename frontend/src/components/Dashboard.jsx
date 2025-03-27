@@ -1,10 +1,8 @@
+import React from "react";
+import { Row, Col } from "react-bootstrap";
+
 const Dashboard = () => {
-  return (
-    <div>
-      <h1>Witaj w TaskWeek!</h1>
-      <p>Tutaj będzie Twój harmonogram i lista zadań</p>
-    </div>
-  );
+  return <div className="container-fluid py-4">Dashboard</div>;
 };
 
 export default Dashboard;
