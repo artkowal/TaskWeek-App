@@ -3,7 +3,6 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import api from "../../api";
-import welcomeImage from "../../assets/taskweek_icon-100.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,11 +26,7 @@ const Login = () => {
 
   return (
     <div className="container mt-5" style={{ maxWidth: "400px" }}>
-      <div className="d-flex p-4 justify-content-center">
-        <img src={welcomeImage} alt="TaskWeek Welcome" />
-      </div>
       <h2>Logowanie</h2>
-
       {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">

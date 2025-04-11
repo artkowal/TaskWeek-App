@@ -15,9 +15,18 @@ const Layout = ({ children }) => {
       {/* Pasek nawigacji (wysokość automatyczna) */}
       <Navbar />
 
-      {/* Główna zawartość rośnie, by zapełnić przestrzeń między navbar a stopką */}
+      {/* Kontener dla głównej zawartości */}
       <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-        {children}
+        <div
+          style={{
+            maxWidth: "1200px",
+            width: "100%",
+            margin: "0 auto", // centrowanie
+            padding: "0 15px", // marginesy wewnętrzne po bokach
+          }}
+        >
+          {children}
+        </div>
       </div>
 
       {/* Stopka */}
