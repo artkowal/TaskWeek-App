@@ -1,4 +1,3 @@
-// components/Schedule/WeekHeader.jsx
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
@@ -8,15 +7,14 @@ const WeekHeader = ({ onAdd }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setNow(new Date());
-    }, 1000); // aktualizujemy co sekundę
+    }, 1000);
 
     return () => clearInterval(timer);
   }, []);
 
-  // Formatowanie daty – możesz dostosować do swoich potrzeb
-  const dayOfMonth = now.getDate();
-  const month = now.toLocaleString("pl-PL", { month: "long" });
-  const formattedTime = now.toLocaleTimeString("pl-PL");
+  //   const dayOfMonth = now.getDate();
+  //   const month = now.toLocaleString("pl-PL", { month: "long" });
+  //   const formattedTime = now.toLocaleTimeString("pl-PL");
 
   return (
     <div

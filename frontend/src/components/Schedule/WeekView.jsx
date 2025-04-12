@@ -1,4 +1,3 @@
-// components/Schedule/WeekView.jsx
 import React, { useEffect, useState } from "react";
 import { DndContext, DragOverlay, closestCenter } from "@dnd-kit/core";
 import api from "../../api";
@@ -93,7 +92,7 @@ const WeekView = () => {
     });
   };
 
-  // Wyznaczamy aktualny dzień (1=poniedziałek, ..., 7=niedziela)
+  // Aktualny dzień
   const jsDay = new Date().getDay();
   const currentDay = jsDay === 0 ? 7 : jsDay;
 

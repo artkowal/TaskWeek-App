@@ -47,6 +47,7 @@ const DroppableColumn = ({
         padding: "0.5rem",
         height: "100%",
         backgroundColor: isToday ? "#fff9f2" : "inherit",
+        minWidth: "130px",
       }}
     >
       <div
@@ -68,7 +69,7 @@ const DroppableColumn = ({
         style={{
           fontSize: "0.75rem",
           textAlign: "right",
-          margin: "15px 0",
+          margin: "15px",
           color: "#999",
         }}
       >
@@ -77,7 +78,7 @@ const DroppableColumn = ({
           : `${totalTimeText}`}
       </div>
 
-      <div style={{ overflowY: "auto", overflowX: "hidden", flex: 1 }}>
+      <div style={{ overflowY: "auto", overflowX: "hidden" }}>
         {dayEventsNodes}
       </div>
     </div>
