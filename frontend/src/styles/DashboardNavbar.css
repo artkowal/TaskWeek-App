@@ -3,20 +3,23 @@
   display: flex;
   align-items: center;
   padding: 0;
+  background-color: cornflowerblue;
 }
 
 .dashboard-brand {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.dashboard-logo {
-  height: 20px;
-  margin-right: 0.3rem;
+button.dashboard-toggle-sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dashboard-brand-text {
-  font-size: 0.8rem;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -26,24 +29,17 @@
   align-items: center;
 }
 
-.dashboard-welcome {
-  font-size: 0.7rem;
-  margin-right: 0.5rem;
-}
-
 button.dashboard-logout {
-  padding: 0.1rem 0.4rem;
   font-size: 12px;
   align-items: center;
-  line-height: 1;
 }
 
 .dashboard-logout-icon {
+  margin: auto;
   height: 12px;
   margin-right: 2px;
 }
 
-/* Responsywność */
 @media (max-width: 768px) {
   .dashboard-navbar {
     padding: 0.1rem 0.3rem;

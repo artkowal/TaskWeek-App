@@ -1,0 +1,43 @@
+.dashboard-layout {
+  height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar-user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-user-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-user-icon svg {
+  width: 40px;
+  height: 40px;
+  color: #6c757d;
+}
+
+.sidebar-user-name {
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.sidebar-change-password {
+  font-size: 0.75rem;
+}
+
+.sidebar-checkbox .form-check-label {
+  font-size: 0.75rem;
+}

@@ -1,0 +1,27 @@
+.dashboard-body {
+  position: relative;
+}
+
+/* Sidebar – wysuwa się z lewej strony, zaczyna się poniżej navbaru */
+.dashboard-sidebar {
+  position: fixed;
+  top: 50px; /* poniżej navbara */
+  left: 0;
+  width: 200px;
+  height: calc(100% - 50px);
+  background-color: #f8f9fa;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+  z-index: 1050;
+  padding: 1rem;
+}
+
+/* Overlay – przykrywa dashboard (ale nie navbar) */
+.dashboard-overlay {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 50px);
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1040;
+}

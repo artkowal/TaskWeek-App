@@ -1,18 +1,30 @@
 // components/Layout/DashboardLayout.jsx
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import DashboardNavbar from "./DashboardNavbar"; // Stwórz lub zmodyfikuj ten komponent, aby odpowiadał wymaganiom
+import DashboardNavbar from "./DashboardNavbar";
+import DashboardSidebar from "./DashboardSidebar";
+import "../../styles/DashboardLayout.css";
 
 const DashboardLayout = () => {
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  const toggleSidebar = () => setSidebarVisible((prev) => !prev);
+  const closeSidebar = () => setSidebarVisible(false);
+
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
-    >
-      <DashboardNavbar />
-      <div style={{ flex: 1 }}>
-        <Outlet />
+    <div className="dashboard-layout">
+      <DashboardNavbar onToggleSidebar={toggleSidebar} />
+      <div className="dashboard-body">
+        {sidebarVisible && (
+          <>
+            <DashboardSidebar />
+            <div className="dashboard-overlay" onClick={closeSidebar}></div>
+          </>
+        )}
+        <div className="dashboard-content">
+          <Outlet />
+        </div>
       </div>
-      {/* Footer nie jest renderowany */}
     </div>
   );
 };
