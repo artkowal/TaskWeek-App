@@ -1,0 +1,59 @@
+.dashboard-navbar {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.dashboard-brand {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-logo {
+  height: 20px;
+  margin-right: 0.3rem;
+}
+
+.dashboard-brand-text {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.dashboard-nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-welcome {
+  font-size: 0.7rem;
+  margin-right: 0.5rem;
+}
+
+button.dashboard-logout {
+  padding: 0.1rem 0.4rem;
+  font-size: 12px;
+  align-items: center;
+  line-height: 1;
+}
+
+.dashboard-logout-icon {
+  height: 12px;
+  margin-right: 2px;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+  .dashboard-navbar {
+    padding: 0.1rem 0.3rem;
+  }
+  .dashboard-brand-text,
+  .dashboard-welcome,
+  .dashboard-logout {
+    font-size: 0.65rem;
+  }
+  .dashboard-logo {
+    height: 18px;
+  }
+}

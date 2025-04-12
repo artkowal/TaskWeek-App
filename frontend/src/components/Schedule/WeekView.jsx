@@ -1,4 +1,4 @@
-// src/components/Harmonogram/WeekView.jsx
+// src/components/Schedule/WeekView.jsx
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import api from "../../api";
@@ -48,68 +48,73 @@ const WeekView = () => {
   };
 
   return (
-    <div>
-      <h2>Harmonogram tygodnia</h2>
-      {/* Główne opakowanie harmonogramu o stałej wysokości */}
-      <div style={{ display: "flex", height: "80vh" }}>
-        {daysOfWeek.map((day) => {
-          const dayEvents = events.filter((evt) => evt.dayOfWeek === day.value);
+    <div
+      style={{
+        display: "flex",
+        flex: 1,
+        overflowX: "auto",
+        height: "100%",
+      }}
+    >
+      {daysOfWeek.map((day) => {
+        const dayEvents = events.filter((evt) => evt.dayOfWeek === day.value);
 
-          return (
+        return (
+          <div
+            key={day.value}
+            style={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              borderRight: "1px solid #ddd",
+              padding: "0.5rem",
+              backgroundColor: "#f4f4f4",
+              height: "100%",
+            }}
+          >
             <div
-              key={day.value}
-              // Ustawiamy kolumnę jako flexbox w pionie
               style={{
-                flex: 1,
-                border: "1px solid #ccc",
-                margin: "0 5px",
-                display: "flex",
-                flexDirection: "column",
-                padding: "5px",
+                fontWeight: "bold",
+                fontSize: "0.85rem",
+                textAlign: "center",
+                marginBottom: "0.5rem",
               }}
             >
-              <h5 style={{ textAlign: "center" }}>{day.label}</h5>
-              {/* Kontener na wydarzenia, który rośnie, a gdy zawartość przekroczy dostępny obszar, pojawi się scrollbar */}
-              <div
-                style={{
-                  flex: 1,
-                  overflowY: "auto",
-                  marginBottom: "10px",
-                }}
-              >
-                {dayEvents.map((evt) => (
-                  <EventCard
-                    key={evt.id}
-                    event={evt}
-                    onClick={() => handleOpenModal(evt)}
-                  />
-                ))}
-              </div>
-              {/* Kontener przycisku, który dzięki margin-top: auto przylega do dołu */}
-              <div style={{ marginTop: "auto" }}>
-                <Button
-                  variant="outline-primary"
-                  size="sm"
-                  style={{ width: "100%" }}
-                  onClick={() =>
-                    handleOpenModal({
-                      dayOfWeek: day.value,
-                      title: "",
-                      description: "",
-                      startTime: "08:00",
-                      endTime: "09:00",
-                      color: "#ff0000",
-                      isRecurring: false,
-                    })
-                  }
-                >
-                  Dodaj
-                </Button>
-              </div>
+              {day.label}
             </div>
-          );
-        })}
-      </div>
+
+            <Button
+              variant="success"
+              size="sm"
+              onClick={() =>
+                handleOpenModal({
+                  dayOfWeek: day.value,
+                  title: "",
+                  description: "",
+                  startTime: "08:00",
+                  endTime: "09:00",
+                  color: "#ff0000",
+                  isRecurring: false,
+                })
+              }
+              style={{ marginBottom: "0.5rem" }}
+            >
+              + Dodaj
+            </Button>
+
+            <div style={{ overflowY: "auto", flex: 1 }}>
+              {dayEvents.map((evt) => (
+                <EventCard
+                  key={evt.id}
+                  event={evt}
+                  onClick={() => handleOpenModal(evt)}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })}
+
       {showModal && (
         <EventModal
           show={showModal}

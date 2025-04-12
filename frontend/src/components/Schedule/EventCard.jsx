@@ -1,4 +1,3 @@
-// src/components/Schedule/EventCard.jsx
 import React from "react";
 import { Card } from "react-bootstrap";
 
@@ -15,8 +14,8 @@ const EventCard = ({ event, onClick }) => {
       onClick={onClick}
     >
       <Card.Body>
-        <Card.Title style={{ fontSize: "1rem" }}>{title}</Card.Title>
-        <Card.Text style={{ fontSize: "0.9rem" }}>
+        <Card.Title style={{ fontSize: "0.85rem" }}>{title}</Card.Title>
+        <Card.Text style={{ fontSize: "0.65rem" }}>
           {startTime} - {endTime}
           <br />
           {isRecurring && <span className="text-success">Cykliczne</span>}

@@ -19,7 +19,6 @@ const TodoList = () => {
     fetchTasks();
   }, []);
 
-  // Przykładowa funkcja do odświeżania listy zadań po zmianach
   const handleTaskChange = () => {
     fetchTasks();
   };
@@ -32,7 +31,7 @@ const TodoList = () => {
           <TodoItem key={task.id} task={task} onTaskUpdate={handleTaskChange} />
         ))}
       </ListGroup>
-      {/* Możesz dodać przycisk do dodania nowego zadania oraz powiązany modal */}
+
       <Button
         variant="primary"
         className="mt-3"

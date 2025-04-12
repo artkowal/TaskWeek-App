@@ -1,4 +1,3 @@
-// src/components/Schedule/EventModal.jsx
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import api from "../../api";
@@ -40,15 +39,13 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
 
     try {
       if (isEditMode) {
-        // PATCH
         await api.patch(`/event/${eventData.id}`, payload);
       } else {
-        // POST
         await api.post("/event", payload);
       }
 
-      onSaveSuccess(); // wywołaj callback, aby odświeżyć listę w Schedule
-      onHide(); // zamknij okno
+      onSaveSuccess();
+      onHide();
     } catch (err) {
       console.error("Błąd zapisu zdarzenia:", err);
       alert("Błąd zapisu zdarzenia");
