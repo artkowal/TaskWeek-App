@@ -1,9 +1,12 @@
-// src/components/Schedule/WeekView.jsx
+// components/Schedule/WeekView.jsx
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { DndContext, DragOverlay, closestCenter } from "@dnd-kit/core";
 import api from "../../api";
-import EventCard from "./EventCard";
 import EventModal from "./EventModal";
+import DroppableColumn from "./DroppableColumn";
+import DraggableEvent from "./DraggableEvent";
+import EventCard from "./EventCard";
+import WeekHeader from "./WeekHeader";
 
 const daysOfWeek = [
   { label: "Poniedziałek", value: 1 },
@@ -19,6 +22,11 @@ const WeekView = () => {
   const [events, setEvents] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [activeEvent, setActiveEvent] = useState(null);
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   const fetchEvents = async () => {
     try {
@@ -28,10 +36,6 @@ const WeekView = () => {
       console.error("Błąd pobierania wydarzeń:", error);
     }
   };
-
-  useEffect(() => {
-    fetchEvents();
-  }, []);
 
   const handleOpenModal = (event = null) => {
     setSelectedEvent(event);
@@ -47,73 +51,93 @@ const WeekView = () => {
     fetchEvents();
   };
 
+  const handleDragStart = (eventInfo) => {
+    setActiveEvent(eventInfo.active.data.current.event);
+  };
+
+  const handleDragEnd = async (eventInfo) => {
+    const { active, over } = eventInfo;
+    if (!over) {
+      setActiveEvent(null);
+      return;
+    }
+    const activeData = active.data.current.event;
+    const newDayOfWeek = parseInt(over.id.split("-")[1], 10);
+    if (activeData.dayOfWeek !== newDayOfWeek) {
+      setEvents((prevEvents) =>
+        prevEvents.map((ev) =>
+          ev.id === activeData.id ? { ...ev, dayOfWeek: newDayOfWeek } : ev
+        )
+      );
+      try {
+        await api.patch(`/event/${activeData.id}`, {
+          ...activeData,
+          dayOfWeek: newDayOfWeek,
+        });
+      } catch (error) {
+        console.error("Błąd aktualizacji wydarzenia:", error);
+      }
+    }
+    setActiveEvent(null);
+  };
+
+  const handleDragCancel = () => {
+    setActiveEvent(null);
+  };
+
+  const sortEventsByTime = (dayEvents) => {
+    return dayEvents.sort((a, b) => {
+      const [ah, am] = a.startTime.split(":").map(Number);
+      const [bh, bm] = b.startTime.split(":").map(Number);
+      return ah * 60 + am - (bh * 60 + bm);
+    });
+  };
+
+  // Wyznaczamy aktualny dzień (1=poniedziałek, ..., 7=niedziela)
+  const jsDay = new Date().getDay();
+  const currentDay = jsDay === 0 ? 7 : jsDay;
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flex: 1,
-        overflowX: "auto",
-        height: "100%",
-      }}
+    <DndContext
+      collisionDetection={closestCenter}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+      onDragCancel={handleDragCancel}
     >
-      {daysOfWeek.map((day) => {
-        const dayEvents = events.filter((evt) => evt.dayOfWeek === day.value);
+      <WeekHeader onAdd={handleOpenModal} />
+      <div
+        style={{ display: "flex", flex: 1, overflowX: "auto", height: "100%" }}
+      >
+        {daysOfWeek.map((day) => {
+          const dayEvents = events.filter((evt) => evt.dayOfWeek === day.value);
+          const sortedDayEventsData = sortEventsByTime(dayEvents);
+          const dayEventsNodes = sortedDayEventsData.map((evt) => (
+            <DraggableEvent
+              key={evt.id}
+              event={evt}
+              onClick={handleOpenModal}
+            />
+          ));
+          const isToday = day.value === currentDay;
+          return (
+            <DroppableColumn
+              key={day.value}
+              day={day}
+              isToday={isToday}
+              sortedDayEventsData={sortedDayEventsData}
+              dayEventsNodes={dayEventsNodes}
+            />
+          );
+        })}
+      </div>
 
-        return (
-          <div
-            key={day.value}
-            style={{
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              borderRight: "1px solid #ddd",
-              padding: "0.5rem",
-              backgroundColor: "#f4f4f4",
-              height: "100%",
-            }}
-          >
-            <div
-              style={{
-                fontWeight: "bold",
-                fontSize: "0.85rem",
-                textAlign: "center",
-                marginBottom: "0.5rem",
-              }}
-            >
-              {day.label}
-            </div>
-
-            <Button
-              variant="success"
-              size="sm"
-              onClick={() =>
-                handleOpenModal({
-                  dayOfWeek: day.value,
-                  title: "",
-                  description: "",
-                  startTime: "08:00",
-                  endTime: "09:00",
-                  color: "#ff0000",
-                  isRecurring: false,
-                })
-              }
-              style={{ marginBottom: "0.5rem" }}
-            >
-              + Dodaj
-            </Button>
-
-            <div style={{ overflowY: "auto", flex: 1 }}>
-              {dayEvents.map((evt) => (
-                <EventCard
-                  key={evt.id}
-                  event={evt}
-                  onClick={() => handleOpenModal(evt)}
-                />
-              ))}
-            </div>
+      <DragOverlay style={{ zIndex: 9999 }}>
+        {activeEvent ? (
+          <div style={{ pointerEvents: "none" }}>
+            <EventCard event={activeEvent} onClick={() => {}} />
           </div>
-        );
-      })}
+        ) : null}
+      </DragOverlay>
 
       {showModal && (
         <EventModal
@@ -123,7 +147,7 @@ const WeekView = () => {
           onSaveSuccess={handleSaveEventSuccess}
         />
       )}
-    </div>
+    </DndContext>
   );
 };
 
