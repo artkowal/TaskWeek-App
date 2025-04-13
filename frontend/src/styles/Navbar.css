@@ -1,36 +1,46 @@
-.navbar-welcome-container {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
+.custom-navbar {
+  background-color: #285294;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-welcome-text {
-  text-align: center;
+.brand-text {
+  color: #ffffff;
+  font-size: 1.1rem;
   font-weight: bold;
-  font-size: 1rem;
 }
 
-.brand-img {
-  height: 30px;
+.custom-navbar-toggle {
+  border: none;
+  outline: none;
+  transition: transform 0.3s color;
+}
+
+/* Navigation links */
+.custom-nav-link {
+  color: #ffffff !important;
+  padding: 10px 15px !important;
+  margin-left: 1rem;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Efekt zapadania się */
+.custom-nav-link:hover {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.custom-nav-link:hover::after {
+  width: 100%;
 }
 
 @media (max-width: 768px) {
-  .welcome-text {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
   .custom-navbar .navbar-collapse {
     justify-content: center;
   }
-
-  .container {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .custom-navbar .navbar-collapse {
-    justify-content: center;
+  .brand-text {
+    font-size: 1.2rem;
   }
 }

@@ -1,7 +1,8 @@
 import React from "react";
+import "../../styles/Footer.css";
 
 const Footer = () => {
-  return <div className="bg-light text-center py-3">TaskWeek &copy; 2025</div>;
+  return <div className="footer">TaskWeek &copy; 2025</div>;
 };
 
 export default Footer;

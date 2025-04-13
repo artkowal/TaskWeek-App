@@ -3,7 +3,6 @@ import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import "../../styles/Navbar.css";
-import welcomeImage from "../../assets/taskweek_icon-55.png";
 
 const NavbarComponent = () => {
   const { user, checkAuth } = useAuth();
@@ -13,23 +12,21 @@ const NavbarComponent = () => {
   }, [user, checkAuth]);
 
   return (
-    <Navbar bg="light" expand="lg" className="custom-navbar">
+    <Navbar expand="lg" className="custom-navbar">
       <div className="container-fluid">
         <Navbar.Brand as={Link} to="/">
-          <img
-            className="brand-img"
-            src={welcomeImage}
-            alt="TaskWeek Welcome"
-          />
-          TaskWeek
+          <span className="brand-text">TaskWeek</span>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          className="custom-navbar-toggle"
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto align-items-center">
-            <Nav.Link as={Link} to="/login">
+            <Nav.Link as={Link} to="/login" className="custom-nav-link">
               Zaloguj
             </Nav.Link>
-            <Nav.Link as={Link} to="/register">
+            <Nav.Link as={Link} to="/register" className="custom-nav-link">
               Zarejestruj
             </Nav.Link>
           </Nav>

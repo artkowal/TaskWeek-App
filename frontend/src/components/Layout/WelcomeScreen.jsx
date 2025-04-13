@@ -19,13 +19,7 @@ const WelcomeScreen = () => {
           TaskWeek to Twój osobisty asystent do organizowania zadań. <br />
           Planuj, monitoruj postępy i zwiększ swoją produktywność każdego dnia!
         </p>
-        <Button
-          as={Link}
-          to="/login"
-          variant="primary"
-          size="lg"
-          className="mt-3"
-        >
+        <Button as={Link} to="/login" className="button">
           Rozpocznij zarządzanie
         </Button>
       </div>

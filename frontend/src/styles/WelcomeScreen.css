@@ -1,10 +1,17 @@
 .welcome-container {
-  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 20px;
+  min-height: 84vh;
+  padding: 1.5% 0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .welcome-image {
@@ -13,10 +20,47 @@
   margin-bottom: 20px;
 }
 
+.welcome-animation h1 {
+  color: #285294;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-container .welcome-animation .text-muted {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
 .welcome-animation {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 1s forwards;
+}
+
+.button {
+  background-color: #285294 !important;
+  border: none;
+  padding: 10px 20px !important;
+  transition: transform 0.2s ease;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+  animation: buttonOscillate 2s infinite ease-in-out;
+  background-color: #204176 !important;
+}
+
+@keyframes buttonOscillate {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.03) rotate(2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 @keyframes fadeInUp {

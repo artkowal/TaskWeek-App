@@ -10,7 +10,15 @@ const Layout = () => {
       style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
       <Navbar />
-      <div style={{ flex: 1 }}>
+      <div
+        style={{
+          display: "flex",
+          flex: 1,
+          backgroundColor: "#dde9fe",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Outlet />
       </div>
       <Footer />

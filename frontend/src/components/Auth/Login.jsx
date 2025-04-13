@@ -2,7 +2,10 @@ import { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import welcomeImage from "../../assets/taskweek_icon-100.png";
 import api from "../../api";
+
+import "../../styles/Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -25,36 +28,42 @@ const Login = () => {
   };
 
   return (
-    <div className="container mt-5" style={{ maxWidth: "400px" }}>
-      <h2>Logowanie</h2>
-      {error && <Alert variant="danger">{error}</Alert>}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </Form.Group>
+    <div className="login-container">
+      <div className="login">
+        <h2>Logowanie</h2>
+        <div className="d-flex p-4 justify-content-center">
+          <img src={welcomeImage} alt="TaskWeek Welcome" />
+        </div>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Hasło</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </Form.Group>
+        {error && <Alert variant="danger">{error}</Alert>}
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </Form.Group>
 
-        <Button variant="primary" type="submit" className="w-100">
-          Zaloguj się
-        </Button>
-      </Form>
-      <div className="mt-3 text-center">
-        Nie masz konta? <Link to="/register">Zarejestruj się</Link>
+          <Form.Group className="mb-3">
+            <Form.Label>Hasło</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Form.Group>
+
+          <Button type="submit" className="form-button">
+            Zaloguj się
+          </Button>
+        </Form>
+        <div className="mt-3 text-center">
+          Nie masz konta? <Link to="/register">Zarejestruj się</Link>
+        </div>
       </div>
     </div>
   );
