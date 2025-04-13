@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DndContext, DragOverlay, closestCenter } from "@dnd-kit/core";
 import api from "../../api";
 import EventModal from "./EventModal";
+import EventDetailsModal from "./EventDetailsModal";
 import DroppableColumn from "./DroppableColumn";
 import DraggableEvent from "./DraggableEvent";
 import EventCard from "./EventCard";
@@ -19,7 +20,8 @@ const daysOfWeek = [
 
 const WeekView = () => {
   const [events, setEvents] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [activeEvent, setActiveEvent] = useState(null);
 
@@ -36,14 +38,25 @@ const WeekView = () => {
     }
   };
 
-  const handleOpenModal = (event = null) => {
+  const handleEventClick = (event) => {
     setSelectedEvent(event);
-    setShowModal(true);
+    setShowDetailsModal(true);
   };
 
-  const handleCloseModal = () => {
+  const handleEdit = (event) => {
+    setSelectedEvent(event);
+    setShowDetailsModal(false);
+    setShowEditModal(true);
+  };
+
+  const handleCloseEditModal = () => {
     setSelectedEvent(null);
-    setShowModal(false);
+    setShowEditModal(false);
+  };
+
+  const handleCloseDetailsModal = () => {
+    setSelectedEvent(null);
+    setShowDetailsModal(false);
   };
 
   const handleSaveEventSuccess = () => {
@@ -103,7 +116,7 @@ const WeekView = () => {
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >
-      <WeekHeader onAdd={handleOpenModal} />
+      <WeekHeader onAdd={() => handleEventClick(null)} />
       <div
         style={{ display: "flex", flex: 1, overflowX: "auto", height: "100%" }}
       >
@@ -114,7 +127,7 @@ const WeekView = () => {
             <DraggableEvent
               key={evt.id}
               event={evt}
-              onClick={handleOpenModal}
+              onClick={handleEventClick}
             />
           ));
           const isToday = day.value === currentDay;
@@ -133,17 +146,26 @@ const WeekView = () => {
       <DragOverlay style={{ zIndex: 9999 }}>
         {activeEvent ? (
           <div style={{ pointerEvents: "none" }}>
-            <EventCard event={activeEvent} onClick={() => {}} />
+            <EventCard event={activeEvent} />
           </div>
         ) : null}
       </DragOverlay>
 
-      {showModal && (
+      {showEditModal && (
         <EventModal
-          show={showModal}
-          onHide={handleCloseModal}
+          show={showEditModal}
+          onHide={handleCloseEditModal}
           eventData={selectedEvent}
           onSaveSuccess={handleSaveEventSuccess}
+        />
+      )}
+
+      {showDetailsModal && (
+        <EventDetailsModal
+          show={showDetailsModal}
+          onHide={handleCloseDetailsModal}
+          event={selectedEvent}
+          onEdit={handleEdit}
         />
       )}
     </DndContext>
