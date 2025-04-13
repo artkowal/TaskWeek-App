@@ -1,0 +1,10 @@
+.week-view-container {
+  display: flex;
+  flex: 1;
+  overflow-x: auto;
+  height: 100%;
+}
+
+.drag-overlay {
+  z-index: 9999;
+}

@@ -1,0 +1,22 @@
+.week-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* .week-header__info {
+
+} */
+
+.week-header__date {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.week-header__time {
+  font-size: 0.85rem;
+  color: #555;
+}

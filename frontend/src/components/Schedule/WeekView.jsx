@@ -7,6 +7,7 @@ import DroppableColumn from "./DroppableColumn";
 import DraggableEvent from "./DraggableEvent";
 import EventCard from "./EventCard";
 import WeekHeader from "./WeekHeader";
+import "../../styles/WeekView.css";
 
 const daysOfWeek = [
   { label: "Poniedziałek", value: 1 },
@@ -36,6 +37,11 @@ const WeekView = () => {
     } catch (error) {
       console.error("Błąd pobierania wydarzeń:", error);
     }
+  };
+
+  const handleAddEvent = (newEventData) => {
+    setSelectedEvent(newEventData);
+    setShowEditModal(true);
   };
 
   const handleEventClick = (event) => {
@@ -116,10 +122,8 @@ const WeekView = () => {
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >
-      <WeekHeader onAdd={() => handleEventClick(null)} />
-      <div
-        style={{ display: "flex", flex: 1, overflowX: "auto", height: "100%" }}
-      >
+      <WeekHeader onAdd={handleAddEvent} />
+      <div className="week-view-container">
         {daysOfWeek.map((day) => {
           const dayEvents = events.filter((evt) => evt.dayOfWeek === day.value);
           const sortedDayEventsData = sortEventsByTime(dayEvents);
@@ -143,7 +147,7 @@ const WeekView = () => {
         })}
       </div>
 
-      <DragOverlay style={{ zIndex: 9999 }}>
+      <DragOverlay className="drag-overlay">
         {activeEvent ? (
           <div style={{ pointerEvents: "none" }}>
             <EventCard event={activeEvent} />

@@ -1,0 +1,57 @@
+.task-item {
+  width: 100%;
+  position: relative;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  background-color: #fff;
+  border-left: 4px solid #33c;
+  cursor: pointer;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+.task-item.completed {
+  background-color: #f8f8f8;
+  border-left-color: #aaa;
+}
+
+.task-toggle {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  cursor: pointer;
+}
+
+.task-delete {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+
+.task-content {
+  margin-left: 32px;
+  padding-right: 32px;
+}
+
+.task-title {
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  font-size: 0.85rem;
+  color: #333;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.task-description {
+  font-size: 0.75rem;
+  color: #555;
+  white-space: normal;
+  word-wrap: break-word;
+}

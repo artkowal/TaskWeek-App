@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import api from "../../api";
+import "../../styles/EventModal.css";
 
 const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
   const isEditMode = !!eventData?.id;
@@ -13,8 +14,8 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
   const [isRecurring, setIsRecurring] = useState(
     eventData?.isRecurring || false
   );
+  const [dayOfWeek, setDayOfWeek] = useState(eventData?.dayOfWeek || 1);
 
-  // Gdy eventData się zmienia, uaktualniamy stany (np. gdy przechodzimy między eventami bez zamykania modala)
   useEffect(() => {
     setTitle(eventData?.title || "");
     setDescription(eventData?.description || "");
@@ -22,11 +23,26 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
     setEndTime(eventData?.endTime || "09:00");
     setColor(eventData?.color || "#000000");
     setIsRecurring(eventData?.isRecurring || false);
+    setDayOfWeek(eventData?.dayOfWeek || 1);
   }, [eventData]);
+
+  const dayOptions = [
+    { value: 1, label: "Poniedziałek" },
+    { value: 2, label: "Wtorek" },
+    { value: 3, label: "Środa" },
+    { value: 4, label: "Czwartek" },
+    { value: 5, label: "Piątek" },
+    { value: 6, label: "Sobota" },
+    { value: 7, label: "Niedziela" },
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    // Walidacja
+    if (startTime >= endTime) {
+      alert("Godzina startu musi być wcześniejsza niż godzina zakończenia.");
+      return;
+    }
     const payload = {
       title,
       description,
@@ -34,7 +50,7 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
       endTime,
       color,
       isRecurring,
-      dayOfWeek: eventData.dayOfWeek,
+      dayOfWeek,
     };
 
     try {
@@ -43,7 +59,6 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
       } else {
         await api.post("/event", payload);
       }
-
       onSaveSuccess();
       onHide();
     } catch (err) {
@@ -53,9 +68,8 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
   };
 
   const handleDelete = async () => {
-    if (!eventData.id) return;
+    if (!eventData?.id) return;
     if (!window.confirm("Na pewno chcesz usunąć to wydarzenie?")) return;
-
     try {
       await api.delete(`/event/${eventData.id}`);
       onSaveSuccess();
@@ -75,6 +89,7 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          {/* Pole: Tytuł */}
           <Form.Group className="mb-3">
             <Form.Label>Tytuł</Form.Label>
             <Form.Control
@@ -85,7 +100,7 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
               maxLength={100}
             />
           </Form.Group>
-
+          {/* Pole: Opis */}
           <Form.Group className="mb-3">
             <Form.Label>Opis</Form.Label>
             <Form.Control
@@ -95,7 +110,21 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
               maxLength={255}
             />
           </Form.Group>
-
+          {/* Pole: Dzień tygodnia */}
+          <Form.Group className="mb-3">
+            <Form.Label>Dzień tygodnia</Form.Label>
+            <Form.Select
+              value={dayOfWeek}
+              onChange={(e) => setDayOfWeek(parseInt(e.target.value, 10))}
+            >
+              {dayOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+          {/* Wiersz: Godzina start i koniec */}
           <div className="d-flex gap-3">
             <Form.Group className="mb-3 flex-fill">
               <Form.Label>Godzina start</Form.Label>
@@ -106,7 +135,6 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
                 required
               />
             </Form.Group>
-
             <Form.Group className="mb-3 flex-fill">
               <Form.Label>Godzina koniec</Form.Label>
               <Form.Control
@@ -117,16 +145,29 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
               />
             </Form.Group>
           </div>
-
+          {/* Pole: Kolor */}
           <Form.Group className="mb-3">
             <Form.Label>Kolor</Form.Label>
-            <Form.Control
-              type="color"
-              value={color}
-              onChange={(e) => setColor(e.target.value)}
-            />
+            <div className="color-picker">
+              <div
+                className={`color-circle ${
+                  color === "#ff0000" ? "selected" : ""
+                }`}
+                style={{ backgroundColor: "#ff0000" }}
+                onClick={() => setColor("#ff0000")}
+                title="Czerwony"
+              ></div>
+              <div
+                className={`color-circle ${
+                  color === "#28a745" ? "selected" : ""
+                }`}
+                style={{ backgroundColor: "#28a745" }}
+                onClick={() => setColor("#28a745")}
+                title="Zielony"
+              ></div>
+            </div>
           </Form.Group>
-
+          {/* Pole: Powtarzaj co tydzień */}
           <Form.Group className="mb-3">
             <Form.Check
               type="checkbox"

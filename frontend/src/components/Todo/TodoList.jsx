@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { ListGroup, Button } from "react-bootstrap";
 import api from "../../api";
-import TodoItem from "./TodoItem";
+import TaskItem from "./TaskItem";
+import { Plus } from "lucide-react";
+import AddTaskModal from "./AddTaskModal";
+import "../../styles/TodoList.css";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
+  const [showAddModal, setShowAddModal] = useState(false);
 
   const fetchTasks = async () => {
     try {
@@ -19,26 +22,67 @@ const TodoList = () => {
     fetchTasks();
   }, []);
 
-  const handleTaskChange = () => {
+  const handleToggleComplete = async (task) => {
+    try {
+      await api.patch(`/task/${task.id}`, {
+        title: task.title,
+        description: task.description,
+        isCompleted: !task.isCompleted,
+      });
+      fetchTasks();
+    } catch (error) {
+      console.error("Błąd aktualizacji zadania:", error);
+    }
+  };
+
+  const handleDeleteTask = async (task) => {
+    if (!window.confirm("Na pewno chcesz usunąć to zadanie?")) return;
+    try {
+      await api.delete(`/task/${task.id}`);
+      fetchTasks();
+    } catch (error) {
+      console.error("Błąd usuwania zadania:", error);
+    }
+  };
+
+  const handleOpenAddModal = () => {
+    setShowAddModal(true);
+  };
+
+  const handleCloseAddModal = () => {
+    setShowAddModal(false);
     fetchTasks();
   };
 
-  return (
-    <div>
-      <h2>Lista To‑Do</h2>
-      <ListGroup>
-        {tasks.map((task) => (
-          <TodoItem key={task.id} task={task} onTaskUpdate={handleTaskChange} />
-        ))}
-      </ListGroup>
+  // Liczba zadań
+  const taskCount = tasks.length;
 
-      <Button
-        variant="primary"
-        className="mt-3"
-        onClick={() => alert("DODAJ MODAL")}
-      >
-        Dodaj zadanie
-      </Button>
+  return (
+    <div className="todolist">
+      {/* Nagłówek */}
+      <div className="todolist-header">
+        <h4 className="todolist-title">Lista Zadań ({taskCount})</h4>
+        <div className="todolist-add-btn" onClick={handleOpenAddModal}>
+          <Plus size={16} color="#fff" />
+        </div>
+      </div>
+
+      {/* Lista zadań */}
+      <div className="todolist-list">
+        {tasks.map((task) => (
+          <TaskItem
+            key={task.id}
+            task={task}
+            onToggle={handleToggleComplete}
+            onDelete={handleDeleteTask}
+          />
+        ))}
+      </div>
+
+      {/* Modal dodawania zadania */}
+      {showAddModal && (
+        <AddTaskModal show={showAddModal} onHide={handleCloseAddModal} />
+      )}
     </div>
   );
 };
