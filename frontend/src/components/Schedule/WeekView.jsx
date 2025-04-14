@@ -7,6 +7,7 @@ import DroppableColumn from "./DroppableColumn";
 import DraggableEvent from "./DraggableEvent";
 import EventCard from "./EventCard";
 import WeekHeader from "./WeekHeader";
+import { List } from "lucide-react";
 import "../../styles/WeekView.css";
 
 const daysOfWeek = [
@@ -19,7 +20,7 @@ const daysOfWeek = [
   { label: "Niedziela", value: 7 },
 ];
 
-const WeekView = () => {
+const WeekView = ({ onToggleTodo }) => {
   const [events, setEvents] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -172,6 +173,11 @@ const WeekView = () => {
           onEdit={handleEdit}
         />
       )}
+
+      {/* Przycisk toggle */}
+      <button className="week-toggle-btn" onClick={onToggleTodo}>
+        <List size={16} />
+      </button>
     </DndContext>
   );
 };

@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api";
 import TaskItem from "./TaskItem";
-import { Plus } from "lucide-react";
 import AddTaskModal from "./AddTaskModal";
+import useWindowSize from "../hooks/UseWindowSize";
 import "../../styles/TodoList.css";
 
-const TodoList = () => {
+const TodoList = ({ collapsed, onCollapsedChange }) => {
   const [tasks, setTasks] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
+  const { width } = useWindowSize();
+  const isLargeScreen = width >= 1200;
+
+  const isOverlay = !isLargeScreen;
 
   const fetchTasks = async () => {
     try {
@@ -58,28 +62,32 @@ const TodoList = () => {
   const taskCount = tasks.length;
 
   return (
-    <div className="todolist">
-      {/* Nagłówek */}
-      <div className="todolist-header">
-        <h4 className="todolist-title">Lista Zadań ({taskCount})</h4>
-        <div className="todolist-add-btn" onClick={handleOpenAddModal}>
-          <Plus size={16} color="#fff" />
-        </div>
-      </div>
+    <div
+      className={`todolist ${collapsed ? "collapsed" : ""} ${
+        isOverlay ? "overlay-mode" : ""
+      }`}
+    >
+      {!collapsed && (
+        <>
+          <div className="todolist-header">
+            <h4 className="todolist-title">Lista Zadań ({taskCount})</h4>
+            <div className="todolist-add-btn" onClick={handleOpenAddModal}>
+              +
+            </div>
+          </div>
+          <div className="todolist-list">
+            {tasks.map((task) => (
+              <TaskItem
+                key={task.id}
+                task={task}
+                onToggle={handleToggleComplete}
+                onDelete={handleDeleteTask}
+              />
+            ))}
+          </div>
+        </>
+      )}
 
-      {/* Lista zadań */}
-      <div className="todolist-list">
-        {tasks.map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            onToggle={handleToggleComplete}
-            onDelete={handleDeleteTask}
-          />
-        ))}
-      </div>
-
-      {/* Modal dodawania zadania */}
       {showAddModal && (
         <AddTaskModal show={showAddModal} onHide={handleCloseAddModal} />
       )}

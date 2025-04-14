@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   padding: 0;
-  background-color: cornflowerblue;
+  background-color: #285294;
 }
 
 .dashboard-brand {
@@ -21,6 +21,7 @@ button.dashboard-toggle-sidebar {
 .dashboard-brand-text {
   font-size: 15px;
   font-weight: bold;
+  color: #ffffff;
 }
 
 .dashboard-nav {

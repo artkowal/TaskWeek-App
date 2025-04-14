@@ -1,10 +1,35 @@
+/* styles/WeekView.css */
 .week-view-container {
   display: flex;
   flex: 1;
   overflow-x: auto;
   height: 100%;
+  position: relative;
 }
 
 .drag-overlay {
   z-index: 9999;
+}
+
+.week-toggle-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: #33c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  z-index: 1100;
+}
+
+.week-toggle-btn:hover {
+  background-color: #285294;
 }

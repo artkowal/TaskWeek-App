@@ -1,4 +1,3 @@
-// components/Layout/DashboardNavbar.jsx
 import React from "react";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -29,7 +28,7 @@ const DashboardNavbar = ({ onToggleSidebar }) => {
           className="dashboard-toggle-sidebar"
           onClick={onToggleSidebar}
         >
-          <Menu size={20} />
+          <Menu size={20} color="#ffffff" />
         </Button>
         <Navbar.Brand as={Link} to="/dashboard" className="dashboard-brand">
           <span className="dashboard-brand-text">Task Week</span>
