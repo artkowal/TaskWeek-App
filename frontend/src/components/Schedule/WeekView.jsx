@@ -143,6 +143,7 @@ const WeekView = ({ onToggleTodo }) => {
               isToday={isToday}
               sortedDayEventsData={sortedDayEventsData}
               dayEventsNodes={dayEventsNodes}
+              onAdd={handleAddEvent}
             />
           );
         })}

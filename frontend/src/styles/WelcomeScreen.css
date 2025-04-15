@@ -15,7 +15,7 @@
 }
 
 .welcome-image {
-  max-width: 400px;
+  max-width: 350px;
   border-radius: 10px;
   margin-bottom: 20px;
 }
@@ -27,8 +27,8 @@
 }
 
 .welcome-container .welcome-animation .text-muted {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
 }
 
 .welcome-animation {

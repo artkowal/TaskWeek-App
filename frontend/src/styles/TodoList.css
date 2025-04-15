@@ -4,9 +4,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
+  background-color: #dde9fe;
   transition: all 0.3s ease;
-  background-color: #fff;
-  border-left: 1px solid #ccc;
   overflow: visible;
 }
 .todolist.overlay-mode:not(.collapsed) {
@@ -22,8 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
+  padding: 10px 15px 5px;
 }
 
 .todolist-title {
@@ -34,8 +32,7 @@
 
 .todolist-add-btn {
   cursor: pointer;
-  background-color: #33c;
-  color: #fff;
+  color: gray;
   padding: 6px 8px;
   border-radius: 4px;
   transition: background-color 0.3s ease;

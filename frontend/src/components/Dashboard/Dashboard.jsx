@@ -6,7 +6,7 @@ import useWindowSize from "../hooks/UseWindowSize";
 const Dashboard = () => {
   const [todoCollapsed, setTodoCollapsed] = useState(false);
   const { width } = useWindowSize();
-  const isLargeScreen = width >= 1600;
+  const isLargeScreen = width >= 1500;
 
   useEffect(() => {
     if (!isLargeScreen) {
@@ -20,10 +20,9 @@ const Dashboard = () => {
     <div
       style={{
         fontSize: "0.85rem",
-        height: "92vh",
+        height: "94vh",
         display: "flex",
         overflowX: "hidden",
-        marginTop: "1rem",
       }}
     >
       <div
@@ -61,9 +60,9 @@ const Dashboard = () => {
                 position: "absolute",
                 top: 0,
                 right: 0,
-                width: "400px",
+                width: "300px",
                 height: "95vh",
-                backgroundColor: "#fff",
+                backgroundColor: "#dde9fe",
                 boxShadow: "-2px 0 8px rgba(0, 0, 0, 0.2)",
                 zIndex: 1050,
                 overflowY: "auto",

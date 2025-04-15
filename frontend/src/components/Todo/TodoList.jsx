@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api";
+import { Plus } from "lucide-react";
 import TaskItem from "./TaskItem";
 import AddTaskModal from "./AddTaskModal";
 import useWindowSize from "../hooks/UseWindowSize";
@@ -72,7 +73,7 @@ const TodoList = ({ collapsed, onCollapsedChange }) => {
           <div className="todolist-header">
             <h4 className="todolist-title">Lista Zadań ({taskCount})</h4>
             <div className="todolist-add-btn" onClick={handleOpenAddModal}>
-              +
+              <Plus size="20" color="#999" />
             </div>
           </div>
           <div className="todolist-list">

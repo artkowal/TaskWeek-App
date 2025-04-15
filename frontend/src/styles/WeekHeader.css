@@ -2,13 +2,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
-  padding: 0 0.5rem;
+  padding: 1rem 0.5rem;
 }
 
-/* .week-header__info {
+.week-header__box {
+  display: flex;
+  flex-direction: row;
+}
 
-} */
+.clock-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+}
 
 .week-header__date {
   margin: 0;

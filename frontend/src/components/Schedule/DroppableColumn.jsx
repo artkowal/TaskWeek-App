@@ -1,6 +1,7 @@
-// components/Schedule/DroppableColumn.jsx
 import React from "react";
 import { useDroppable } from "@dnd-kit/core";
+import { Plus } from "lucide-react";
+import "../../styles/DroppableColumn.css";
 
 function toMinutes(timeStr) {
   if (!timeStr || typeof timeStr !== "string") return 0;
@@ -28,6 +29,7 @@ const DroppableColumn = ({
   isToday,
   sortedDayEventsData,
   dayEventsNodes,
+  onAdd,
 }) => {
   const { setNodeRef } = useDroppable({
     id: `day-${day.value}`,
@@ -35,52 +37,36 @@ const DroppableColumn = ({
 
   const totalTimeText = computeTotalTime(sortedDayEventsData);
 
+  const handleAdd = () => {
+    onAdd({
+      dayOfWeek: day.value,
+      title: "",
+      description: "",
+      startTime: "08:00:00",
+      endTime: "09:00:00",
+      color: "#ff0000",
+      isRecurring: false,
+    });
+  };
+
   return (
-    <div
-      ref={setNodeRef}
-      className="day-column"
-      style={{
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        borderRight: "1px solid #ddd",
-        padding: "0.5rem",
-        height: "100%",
-        backgroundColor: isToday ? "#fff9f2" : "inherit",
-        minWidth: "130px",
-      }}
-    >
-      <div
-        style={{
-          fontWeight: "bold",
-          fontSize: "0.85rem",
-          textAlign: "center",
-          marginBottom: "0.25rem",
-          width: "100%",
-          borderBottom: "1px solid #ddd",
-          paddingBottom: "0.25rem",
-          color: isToday ? "#d35400" : "#333",
-        }}
-      >
+    <div ref={setNodeRef} className={`day-column ${isToday ? "today" : ""}`}>
+      <div className={`day-column-header ${isToday ? "today" : ""}`}>
         {day.label}
       </div>
 
-      <div
-        style={{
-          fontSize: "0.75rem",
-          textAlign: "right",
-          margin: "15px",
-          color: "#999",
-        }}
-      >
-        {sortedDayEventsData.length === 0
-          ? "Brak wydarzeń"
-          : `${totalTimeText}`}
+      <div className="day-column-info" onClick={handleAdd}>
+        <div
+          className="add-button"
+          onClick={handleAdd}
+          style={{ cursor: "pointer" }}
+        >
+          <Plus size="20" color="#285294" />
+        </div>
+        {sortedDayEventsData.length === 0 ? "Brak wydarzeń" : totalTimeText}
       </div>
 
-      <div style={{ overflowY: "auto", overflowX: "hidden" }}>
-        {dayEventsNodes}
-      </div>
+      <div className="day-column-content">{dayEventsNodes}</div>
     </div>
   );
 };
