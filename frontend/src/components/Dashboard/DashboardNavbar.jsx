@@ -1,24 +1,12 @@
 import React from "react";
 import { Navbar, Nav, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import api from "../../api";
 import { LogOut, Menu } from "lucide-react";
 import "../../styles/DashboardNavbar.css";
 
 const DashboardNavbar = ({ onToggleSidebar }) => {
-  const { user, checkAuth } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      await api.get("/auth/logout");
-      await checkAuth();
-      navigate("/login");
-    } catch (error) {
-      console.error("Błąd wylogowania:", error);
-    }
-  };
+  const { user, logout } = useAuth();
 
   return (
     <Navbar className="dashboard-navbar" expand="lg">
@@ -38,7 +26,7 @@ const DashboardNavbar = ({ onToggleSidebar }) => {
             <Button
               variant="outline-danger"
               className="dashboard-logout"
-              onClick={handleLogout}
+              onClick={logout}
             >
               <LogOut className="dashboard-logout-icon" />
               Wyloguj

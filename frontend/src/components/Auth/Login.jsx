@@ -3,23 +3,21 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import welcomeImage from "../../assets/taskweek_icon-100.png";
-import api from "../../api";
 
 import "../../styles/Login.css";
 
 const Login = () => {
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { refreshAuth } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      await api.post("/auth/login", { email, password });
-      await refreshAuth();
+      await login(email, password);
       navigate("/");
     } catch (err) {
       setError("Nieprawidłowe dane logowania");

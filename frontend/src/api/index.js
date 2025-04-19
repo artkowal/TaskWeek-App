@@ -9,8 +9,9 @@ const api = axios.create({
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    const url = error.config?.url || "";
     // Nie przekierowuj dla żądań do endpointów auth
-    if (error.config.url.includes("/auth")) {
+    if (url === "/auth/check" || url === "/auth/logout") {
       return Promise.reject(error);
     }
 

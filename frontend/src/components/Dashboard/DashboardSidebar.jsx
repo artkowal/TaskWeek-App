@@ -4,10 +4,13 @@ import { useAuth } from "../../contexts/AuthContext";
 import api from "../../api";
 import { User } from "lucide-react";
 import "../../styles/DashboardSidebar.css";
+import "./ChangePasswordModal";
+import ChangePasswordModal from "./ChangePasswordModal";
 
 const DashboardSidebar = () => {
   const { user, checkAuth } = useAuth();
   const [weeklyDeleting, setWeeklyDeleting] = useState(false);
+  const [showPwdModal, setShowPwdModal] = useState(false);
 
   useEffect(() => {
     setWeeklyDeleting(user?.weeklyDeleting || false);
@@ -19,6 +22,7 @@ const DashboardSidebar = () => {
     try {
       await api.patch("/user", { weeklyDeleting: newValue });
       await checkAuth();
+      window.location.reload();
     } catch (error) {
       console.error("Błąd przy zmianie ustawienia weeklyDeleting:", error);
     }
@@ -36,8 +40,8 @@ const DashboardSidebar = () => {
         <Button
           variant="secondary"
           size="sm"
-          disabled
           className="sidebar-change-password"
+          onClick={() => setShowPwdModal(true)}
         >
           Zmień hasło
         </Button>
@@ -50,6 +54,11 @@ const DashboardSidebar = () => {
           />
         </Form.Group>
       </div>
+
+      <ChangePasswordModal
+        show={showPwdModal}
+        onHide={() => setShowPwdModal(false)}
+      />
     </div>
   );
 };

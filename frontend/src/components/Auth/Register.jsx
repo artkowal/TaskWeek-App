@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../../api";
+import { useAuth } from "../../contexts/AuthContext";
 
 import "../../styles/Register.css";
 
 const Register = () => {
+  const { register } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +16,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/user", { name, email, password });
+      await register(name, email, password);
       navigate("/login");
     } catch (err) {
       setError(err.response?.data?.message || "Rejestracja nie powiodła się");

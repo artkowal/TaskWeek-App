@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import api from "../api";
 
 const AuthContext = createContext();
@@ -18,6 +18,25 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const login = async (email, password) => {
+    await api.post("/auth/login", { email, password });
+    await checkAuth();
+  };
+
+  const register = async (name, email, password) => {
+    await api.post("/user", { name, email, password });
+  };
+
+  const logout = async () => {
+    try {
+      await api.get("/auth/logout");
+    } catch (e) {
+      console.error("Logout failed", e);
+    } finally {
+      setUser(null);
+    }
+  };
+
   const refreshAuth = async () => {
     setLoading(true);
     await checkAuth();
@@ -32,8 +51,11 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         loading,
+        login,
+        register,
         checkAuth,
         refreshAuth,
+        logout,
       }}
     >
       {children}
