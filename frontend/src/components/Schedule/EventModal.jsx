@@ -10,7 +10,7 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
   const [description, setDescription] = useState(eventData?.description || "");
   const [startTime, setStartTime] = useState(eventData?.startTime || "08:00");
   const [endTime, setEndTime] = useState(eventData?.endTime || "09:00");
-  const [color, setColor] = useState(eventData?.color || "#000000");
+  const [color, setColor] = useState(eventData?.color || "#f2f2f2");
   const [isRecurring, setIsRecurring] = useState(
     eventData?.isRecurring || false
   );
@@ -21,7 +21,7 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
     setDescription(eventData?.description || "");
     setStartTime(eventData?.startTime || "08:00");
     setEndTime(eventData?.endTime || "09:00");
-    setColor(eventData?.color || "#000000");
+    setColor(eventData?.color || "#f2f2f2");
     setIsRecurring(eventData?.isRecurring || false);
     setDayOfWeek(eventData?.dayOfWeek || 1);
   }, [eventData]);
@@ -151,20 +151,84 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
             <div className="color-picker">
               <div
                 className={`color-circle ${
-                  color === "#ff0000" ? "selected" : ""
+                  color === "#d6e4fd" ? "selected" : ""
                 }`}
-                style={{ backgroundColor: "#ff0000" }}
-                onClick={() => setColor("#ff0000")}
-                title="Czerwony"
+                style={{ backgroundColor: "#d6e4fd" }}
+                onClick={() => setColor("#d6e4fd")}
+                title="soft sky"
+              />
+              <div
+                className={`color-circle ${
+                  color === "#fecdbf" ? "selected" : ""
+                }`}
+                style={{ backgroundColor: "#fecdbf" }}
+                onClick={() => setColor("#fecdbf")}
+                title="orange"
               ></div>
               <div
                 className={`color-circle ${
-                  color === "#28a745" ? "selected" : ""
+                  color === "#f3c2e4" ? "selected" : ""
                 }`}
-                style={{ backgroundColor: "#28a745" }}
-                onClick={() => setColor("#28a745")}
-                title="Zielony"
+                style={{ backgroundColor: "#f3c2e4" }}
+                onClick={() => setColor("#f3c2e4")}
+                title="pink"
               ></div>
+              <div
+                className={`color-circle ${
+                  color === "#ffe3c2" ? "selected" : ""
+                }`}
+                style={{ backgroundColor: "#ffe3c2" }}
+                onClick={() => setColor("#ffe3c2")}
+                title="yellow"
+              ></div>
+              <div
+                className={`color-circle ${
+                  color === "#c0e4fe" ? "selected" : ""
+                }`}
+                style={{ backgroundColor: "#c0e4fe" }}
+                onClick={() => setColor("#c0e4fe")}
+                title="blue"
+              ></div>
+              <div
+                className={`color-circle ${
+                  color === "#c6f4fd" ? "selected" : ""
+                }`}
+                style={{ backgroundColor: "#c6f4fd" }}
+                onClick={() => setColor("#c6f4fd")}
+                title="green"
+              ></div>
+              <div
+                className={`color-circle ${
+                  color === "#fde4c6" ? "selected" : ""
+                }`}
+                style={{ backgroundColor: "#fde4c6" }}
+                onClick={() => setColor("#fde4c6")}
+                title="apricot"
+              />
+              <div
+                className={`color-circle ${
+                  color === "#e4c6fd" ? "selected" : ""
+                }`}
+                style={{ backgroundColor: "#e4c6fd" }}
+                onClick={() => setColor("#e4c6fd")}
+                title="lavender"
+              />
+              <div
+                className={`color-circle ${
+                  color === "#d6fde4" ? "selected" : ""
+                }`}
+                style={{ backgroundColor: "#d6fde4" }}
+                onClick={() => setColor("#d6fde4")}
+                title="mint"
+              />
+              <div
+                className={`color-circle ${
+                  color === "#fdd6e4" ? "selected" : ""
+                }`}
+                style={{ backgroundColor: "#fdd6e4" }}
+                onClick={() => setColor("#fdd6e4")}
+                title="blush"
+              />
             </div>
           </Form.Group>
           {/* Pole: Powtarzaj co tydzień */}
@@ -178,6 +242,9 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
+          <Button variant="primary" type="submit">
+            Zapisz
+          </Button>
           {isEditMode && (
             <Button variant="danger" onClick={handleDelete}>
               Usuń
@@ -185,9 +252,6 @@ const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
           )}
           <Button variant="secondary" onClick={onHide}>
             Anuluj
-          </Button>
-          <Button variant="primary" type="submit">
-            Zapisz
           </Button>
         </Modal.Footer>
       </Form>

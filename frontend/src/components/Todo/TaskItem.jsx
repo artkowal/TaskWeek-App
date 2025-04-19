@@ -21,7 +21,7 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
         title="Zaznacz jako ukończone"
       >
         {task.isCompleted ? (
-          <CheckSquare size={16} color="#33c" />
+          <CheckSquare size={16} color="#000000" />
         ) : (
           <Square size={16} color="#999" />
         )}

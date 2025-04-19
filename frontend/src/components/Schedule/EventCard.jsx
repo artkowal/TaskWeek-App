@@ -1,4 +1,3 @@
-// components/Schedule/EventCard.jsx
 import React from "react";
 import { Card } from "react-bootstrap";
 import { Clock, FileText } from "lucide-react";
@@ -14,12 +13,13 @@ const EventCard = ({ event, onClick }) => {
     <Card
       className="mb-2"
       style={{
-        borderLeft: `4px solid ${color}`,
+        backgroundColor: `${color}`,
         cursor: "pointer",
         position: "relative",
         height: "112px",
         minWidth: "130px",
         maxWidth: "auto",
+        border: "none",
       }}
       onClick={onClick}
     >

@@ -50,9 +50,6 @@ const EventDetailsModal = ({ show, onHide, event, onEdit }) => {
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onHide}>
-          Zamknij
-        </Button>
         <Button
           variant="primary"
           onClick={() => {
@@ -61,6 +58,9 @@ const EventDetailsModal = ({ show, onHide, event, onEdit }) => {
           }}
         >
           Edytuj
+        </Button>
+        <Button variant="secondary" onClick={onHide}>
+          Zamknij
         </Button>
       </Modal.Footer>
     </Modal>

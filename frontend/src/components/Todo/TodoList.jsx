@@ -50,6 +50,13 @@ const TodoList = ({ collapsed, onCollapsedChange }) => {
     }
   };
 
+  const sortedTasks = React.useMemo(() => {
+    return [...tasks].sort((a, b) => {
+      if (a.isCompleted === b.isCompleted) return 0;
+      return a.isCompleted ? 1 : -1;
+    });
+  }, [tasks]);
+
   const handleOpenAddModal = () => {
     setShowAddModal(true);
   };
@@ -79,7 +86,7 @@ const TodoList = ({ collapsed, onCollapsedChange }) => {
             </div>
           </div>
           <div className="todolist-list">
-            {tasks.map((task) => (
+            {sortedTasks.map((task) => (
               <TaskItem
                 key={task.id}
                 task={task}

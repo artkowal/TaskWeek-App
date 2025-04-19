@@ -2,18 +2,22 @@
   width: 100%;
   position: relative;
   padding: 0.5rem;
-  border-radius: 4px;
+  border-radius: 10px;
   margin-bottom: 0.5rem;
-  background-color: #fff;
-  border-left: 4px solid #33c;
+  background-color: #ffffff;
+  color: #333333;
   cursor: pointer;
   min-height: 100px;
   box-sizing: border-box;
 }
 
+.task-item:hover {
+  background-color: #f0f8ff;
+}
+
 .task-item.completed {
-  background-color: #f8f8f8;
-  border-left-color: #aaa;
+  background-color: #cedbed;
+  color: #7d7f89;
 }
 
 .task-toggle {

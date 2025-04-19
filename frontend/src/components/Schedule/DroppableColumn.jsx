@@ -44,7 +44,7 @@ const DroppableColumn = ({
       description: "",
       startTime: "08:00:00",
       endTime: "09:00:00",
-      color: "#ff0000",
+      color: "",
       isRecurring: false,
     });
   };
