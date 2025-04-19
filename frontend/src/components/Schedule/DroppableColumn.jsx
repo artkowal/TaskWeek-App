@@ -55,13 +55,13 @@ const DroppableColumn = ({
         {day.label}
       </div>
 
-      <div className="day-column-info" onClick={handleAdd}>
+      <div className="day-column-info">
         <div
           className="add-button"
           onClick={handleAdd}
           style={{ cursor: "pointer" }}
         >
-          <Plus size="20" color="#285294" />
+          <Plus size="20" />
         </div>
         {sortedDayEventsData.length === 0 ? "Brak wydarzeń" : totalTimeText}
       </div>

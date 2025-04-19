@@ -50,3 +50,16 @@
   display: flex;
   justify-content: space-between;
 }
+
+.add-button {
+  border-radius: 10px;
+  color: #285294;
+  padding: 1px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #285294;
+  color: #ffffff;
+}

@@ -1,9 +1,8 @@
-// components/Layout/DashboardSidebar.jsx
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
 import api from "../../api";
-import { User } from "lucide-react"; // Ikona użytkownika
+import { User } from "lucide-react";
 import "../../styles/DashboardSidebar.css";
 
 const DashboardSidebar = () => {

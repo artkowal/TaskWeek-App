@@ -1,8 +1,6 @@
-.dashboard-layout {
-  height: 100vh;
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: column;
+.dashboard-sidebar {
+  background-color: #285294 !important;
+  color: #ffffff;
 }
 
 .sidebar-content {
@@ -26,7 +24,7 @@
 .sidebar-user-icon svg {
   width: 40px;
   height: 40px;
-  color: #6c757d;
+  color: #ffffff;
 }
 
 .sidebar-user-name {

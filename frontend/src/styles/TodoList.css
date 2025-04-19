@@ -25,20 +25,30 @@
 }
 
 .todolist-title {
+  color: #285294;
   margin: 0;
   font-weight: bold;
   font-size: 1rem;
 }
 
+.todolist-title span {
+  margin-left: 5px;
+  border-radius: 6px;
+  padding: 5px;
+  background-color: #ffffff;
+  font-weight: lighter;
+}
+
 .todolist-add-btn {
   cursor: pointer;
-  color: gray;
+  color: #285294;
   padding: 6px 8px;
-  border-radius: 4px;
+  border-radius: 20px;
   transition: background-color 0.3s ease;
 }
+
 .todolist-add-btn:hover {
-  background-color: #285294;
+  background-color: #ffffff;
 }
 
 .todolist-list {

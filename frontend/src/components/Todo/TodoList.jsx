@@ -71,9 +71,11 @@ const TodoList = ({ collapsed, onCollapsedChange }) => {
       {!collapsed && (
         <>
           <div className="todolist-header">
-            <h4 className="todolist-title">Lista Zadań ({taskCount})</h4>
+            <h4 className="todolist-title">
+              Lista Zadań <span>{taskCount}</span>
+            </h4>
             <div className="todolist-add-btn" onClick={handleOpenAddModal}>
-              <Plus size="20" color="#999" />
+              <Plus size="20" />
             </div>
           </div>
           <div className="todolist-list">

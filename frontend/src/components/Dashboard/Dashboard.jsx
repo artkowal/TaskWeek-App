@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import WeekView from "../Schedule/WeekView";
 import TodoList from "../Todo/TodoList";
 import useWindowSize from "../hooks/UseWindowSize";
+import "../../styles/Dashboard.css";
 
 const Dashboard = () => {
   const [todoCollapsed, setTodoCollapsed] = useState(false);
@@ -9,70 +10,25 @@ const Dashboard = () => {
   const isLargeScreen = width >= 1500;
 
   useEffect(() => {
-    if (!isLargeScreen) {
-      setTodoCollapsed(true);
-    } else {
-      setTodoCollapsed(false);
-    }
+    setTodoCollapsed(!isLargeScreen);
   }, [isLargeScreen]);
 
   return (
-    <div
-      style={{
-        fontSize: "0.85rem",
-        height: "94vh",
-        display: "flex",
-        overflowX: "hidden",
-      }}
-    >
-      <div
-        style={{
-          flex: 7,
-          display: "flex",
-          flexDirection: "column",
-          overflowY: "auto",
-          borderRight: isLargeScreen ? "1px solid #ccc" : "none",
-          padding: "0 5px",
-        }}
-      >
+    <div className="dashboard">
+      <div className="dashboard-weekview">
         <WeekView onToggleTodo={() => setTodoCollapsed((prev) => !prev)} />
       </div>
 
       {isLargeScreen ? (
-        // Dla dużych ekranów
-        <div
-          style={{
-            flex: todoCollapsed ? 0 : 1,
-            display: "flex",
-            flexDirection: "column",
-            overflowY: "auto",
-            transition: "all 0.3s ease",
-            position: "relative",
-          }}
-        >
+        <div className={`dashboard-todo ${todoCollapsed ? "collapsed" : ""}`}>
           <TodoList collapsed={todoCollapsed} />
         </div>
       ) : (
-        <>
-          {!todoCollapsed && (
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-                width: "300px",
-                height: "95vh",
-                backgroundColor: "#dde9fe",
-                boxShadow: "-2px 0 8px rgba(0, 0, 0, 0.2)",
-                zIndex: 1050,
-                overflowY: "auto",
-                transition: "all 0.3s ease",
-              }}
-            >
-              <TodoList collapsed={todoCollapsed} />
-            </div>
-          )}
-        </>
+        !todoCollapsed && (
+          <div className="dashboard-todo-overlay">
+            <TodoList collapsed={todoCollapsed} />
+          </div>
+        )
       )}
     </div>
   );
