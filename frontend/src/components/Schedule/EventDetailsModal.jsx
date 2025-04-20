@@ -2,6 +2,8 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Clock, FileText } from "lucide-react";
 
+import "../../styles/EventDetailsModal.css";
+
 const EventDetailsModal = ({ show, onHide, event, onEdit }) => {
   if (!event) return null;
 
@@ -11,20 +13,12 @@ const EventDetailsModal = ({ show, onHide, event, onEdit }) => {
   const formattedEndTime = event.endTime ? event.endTime.substring(0, 5) : "";
 
   return (
-    <Modal show={show} onHide={onHide}>
+    <Modal show={show} onHide={onHide} dialogClassName="event-details-modal">
       <Modal.Header closeButton>
         <Modal.Title>Szczegóły wydarzenia</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            fontSize: "0.65rem",
-            color: "#555",
-            marginBottom: "0.5rem",
-          }}
-        >
+        <div className="time-row">
           <Clock size={12} style={{ marginRight: "4px" }} />
           <span>
             {formattedStartTime} - {formattedEndTime}
@@ -37,17 +31,15 @@ const EventDetailsModal = ({ show, onHide, event, onEdit }) => {
             />
           )}
         </div>
-        <h5 style={{ fontSize: "0.85rem", fontWeight: "bold" }}>
-          {event.title}
-        </h5>
-        {event.isRecurring && (
-          <p style={{ fontSize: "0.65rem", color: "green" }}>Cykliczne</p>
-        )}
+        <p className="description-label">Tytuł:</p>
+        <h5 className="event-title">{event.title}</h5>
         {event.description && event.description.trim() !== "" && (
           <>
-            <p style={{ fontSize: "0.75rem" }}>{event.description}</p>
+            <p className="description-label">Opis:</p>
+            <p className="description-text">{event.description}</p>
           </>
         )}
+        {event.isRecurring && <p className="event-recurring">Cykliczne</p>}
       </Modal.Body>
       <Modal.Footer>
         <Button

@@ -1,5 +1,6 @@
 import React from "react";
 import { CheckSquare, Square, Trash } from "lucide-react";
+
 import "../../styles/TaskItem.css";
 
 const TaskItem = ({ task, onToggle, onDelete }) => {
@@ -27,12 +28,10 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
         )}
       </div>
 
-      {/* Ikona kosza */}
       <div className="task-delete" onClick={handleDelete} title="Usuń zadanie">
         <Trash size={16} color="#e74c3c" />
       </div>
 
-      {/* Treść zadania */}
       <div className="task-content">
         <div className="task-title">{task.title}</div>
         {task.description && task.description.trim() !== "" && (

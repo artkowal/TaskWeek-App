@@ -4,9 +4,10 @@ import { Plus } from "lucide-react";
 import TaskItem from "./TaskItem";
 import AddTaskModal from "./AddTaskModal";
 import useWindowSize from "../hooks/UseWindowSize";
+
 import "../../styles/TodoList.css";
 
-const TodoList = ({ collapsed, onCollapsedChange }) => {
+const TodoList = ({ collapsed }) => {
   const [tasks, setTasks] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const { width } = useWindowSize();

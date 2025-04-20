@@ -1,0 +1,42 @@
+.event-details-modal .modal-body {
+  padding: 1rem;
+}
+
+.time-row {
+  display: flex;
+  align-items: center;
+  font-size: 0.65rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.event-details-modal .time-row .icon {
+  margin-right: 4px;
+}
+
+.event-details-modal .time-row .with-description-icon {
+  margin-left: auto;
+  color: #999;
+}
+
+.event-details-modal .event-title {
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.event-details-modal .event-recurring {
+  font-weight: bold;
+  font-size: 0.65rem;
+  color: green;
+  margin: 10px 0;
+}
+
+.event-details-modal .description-label {
+  font-size: 0.75rem;
+  margin: 10px 0;
+}
+
+.event-details-modal .description-text {
+  font-size: 0.75rem;
+  margin: 0 0 0.5rem 0;
+}

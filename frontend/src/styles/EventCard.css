@@ -1,0 +1,39 @@
+.event-card {
+  cursor: pointer;
+  position: relative;
+  height: 112px;
+  min-width: 130px;
+  border: none;
+  margin-bottom: 0.5rem;
+}
+
+.event-card .card-body {
+  padding: 0.75rem;
+  position: relative;
+}
+
+.event-card-time {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.65rem;
+  color: #555;
+}
+
+.event-card-title {
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.event-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: #333;
+}
+
+.event-card-recurring {
+  color: green;
+}

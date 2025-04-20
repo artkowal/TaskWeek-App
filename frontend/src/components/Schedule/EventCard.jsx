@@ -2,6 +2,8 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import { Clock, FileText } from "lucide-react";
 
+import "../../styles/EventCard.css";
+
 const EventCard = ({ event, onClick }) => {
   const { title, startTime, endTime, color, isRecurring, description } = event;
   const hasDescription = description && description.trim() !== "";
@@ -11,60 +13,32 @@ const EventCard = ({ event, onClick }) => {
 
   return (
     <Card
-      className="mb-2"
-      style={{
-        backgroundColor: `${color}`,
-        cursor: "pointer",
-        position: "relative",
-        height: "112px",
-        minWidth: "130px",
-        maxWidth: "auto",
-        border: "none",
-      }}
+      className="event-card"
+      style={{ backgroundColor: color }}
       onClick={onClick}
     >
-      <Card.Body style={{ padding: "0.75rem", position: "relative" }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "0.5rem",
-            fontSize: "0.65rem",
-            color: "#555",
-          }}
-        >
+      <Card.Body>
+        <div className="event-card-time">
           <Clock size={12} style={{ marginRight: "4px" }} />
           <span>
             {formattedStartTime} - {formattedEndTime}
           </span>
         </div>
 
-        <Card.Title
-          style={{
-            fontSize: "0.75rem",
-            fontWeight: "bold",
-            marginBottom: "0.5rem",
-          }}
-        >
-          {title}
-        </Card.Title>
+        <Card.Title className="event-card-title">{title}</Card.Title>
 
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            fontSize: "0.65rem",
-            color: "#333",
-          }}
-        >
-          {isRecurring && <span style={{ color: "green" }}>Cykliczne</span>}
+        <div className="event-card-footer">
+          <div>
+            {isRecurring && (
+              <span className="event-card-recurring">Cykliczne</span>
+            )}
+          </div>
 
           {hasDescription && (
             <FileText
               size={14}
               style={{
-                color: "#999",
+                color: "#555",
               }}
               title="Wydarzenie zawiera opis"
             />

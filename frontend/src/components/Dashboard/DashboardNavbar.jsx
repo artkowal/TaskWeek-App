@@ -3,6 +3,7 @@ import { Navbar, Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { LogOut, Menu } from "lucide-react";
+
 import "../../styles/DashboardNavbar.css";
 
 const DashboardNavbar = ({ onToggleSidebar }) => {

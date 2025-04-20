@@ -8,6 +8,7 @@ import DraggableEvent from "./DraggableEvent";
 import EventCard from "./EventCard";
 import WeekHeader from "./WeekHeader";
 import { List } from "lucide-react";
+
 import "../../styles/WeekView.css";
 
 const daysOfWeek = [
@@ -27,10 +28,6 @@ const WeekView = ({ onToggleTodo }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [activeEvent, setActiveEvent] = useState(null);
 
-  useEffect(() => {
-    fetchEvents();
-  }, []);
-
   const fetchEvents = async () => {
     try {
       const { data } = await api.get("/event");
@@ -39,6 +36,10 @@ const WeekView = ({ onToggleTodo }) => {
       console.error("Błąd pobierania wydarzeń:", error);
     }
   };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   const handleAddEvent = (newEventData) => {
     setSelectedEvent(newEventData);

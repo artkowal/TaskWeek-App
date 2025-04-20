@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import api from "../../api";
+
 import "../../styles/EventModal.css";
 
 const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {

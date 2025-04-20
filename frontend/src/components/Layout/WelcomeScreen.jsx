@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import "../../styles/WelcomeScreen.css";
 import welcomeImage from "../../assets/task-list.png";
+
+import "../../styles/WelcomeScreen.css";
 
 const WelcomeScreen = () => {
   return (

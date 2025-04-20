@@ -3,9 +3,10 @@ import { Form, Button } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
 import api from "../../api";
 import { User } from "lucide-react";
-import "../../styles/DashboardSidebar.css";
 import "./ChangePasswordModal";
 import ChangePasswordModal from "./ChangePasswordModal";
+
+import "../../styles/DashboardSidebar.css";
 
 const DashboardSidebar = () => {
   const { user, checkAuth } = useAuth();

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import WeekView from "../Schedule/WeekView";
 import TodoList from "../Todo/TodoList";
 import useWindowSize from "../hooks/UseWindowSize";
+
 import "../../styles/Dashboard.css";
 
 const Dashboard = () => {

@@ -1,7 +1,7 @@
-// App.jsx
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
+
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import ProtectedRoute from "./components/Layout/ProtectedRoute";
@@ -14,7 +14,7 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        {/* Trasy dla stron głównych korzystające z Layout */}
+        {/* Layout */}
         <Route element={<Layout />}>
           <Route path="/welcome" element={<WelcomeScreen />} />
           <Route path="/login" element={<Login />} />
@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<RedirectToDashboardOrWelcome />} />
         </Route>
 
-        {/* Trasa dashboard korzystająca z DashboardLayout */}
+        {/* DashboardLayout */}
         <Route
           path="/dashboard"
           element={
@@ -31,7 +31,7 @@ function App() {
             </ProtectedRoute>
           }
         >
-          {/* Tu wykorzystujemy zagnieżdżony routing, by wyświetlić Dashboard */}
+          {/* zagnieżdżony routing */}
           <Route index element={<Dashboard />} />
         </Route>
       </Routes>

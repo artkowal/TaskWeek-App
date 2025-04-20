@@ -47,11 +47,11 @@ const AddTaskModal = ({ show, onHide }) => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={onHide}>
-            Anuluj
-          </Button>
           <Button variant="primary" type="submit">
             Zapisz
+          </Button>
+          <Button variant="secondary" onClick={onHide}>
+            Anuluj
           </Button>
         </Modal.Footer>
       </Form>

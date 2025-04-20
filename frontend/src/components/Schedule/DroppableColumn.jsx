@@ -1,6 +1,7 @@
 import React from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { Plus } from "lucide-react";
+
 import "../../styles/DroppableColumn.css";
 
 function toMinutes(timeStr) {
