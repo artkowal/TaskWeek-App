@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import { Clock, FileText } from "lucide-react";
 
-import "../../styles/EventCard.css";
+import "./EventCard.css";
 
 const EventCard = ({ event, onClick }) => {
   const { title, startTime, endTime, color, isRecurring, description } = event;

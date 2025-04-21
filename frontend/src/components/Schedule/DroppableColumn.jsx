@@ -2,7 +2,7 @@ import React from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { Plus } from "lucide-react";
 
-import "../../styles/DroppableColumn.css";
+import "./DroppableColumn.css";
 
 function toMinutes(timeStr) {
   if (!timeStr || typeof timeStr !== "string") return 0;

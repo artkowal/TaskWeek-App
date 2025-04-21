@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { LogOut, Menu } from "lucide-react";
 
-import "../../styles/DashboardNavbar.css";
+import "./DashboardNavbar.css";
 
 const DashboardNavbar = ({ onToggleSidebar }) => {
   const { user, logout } = useAuth();

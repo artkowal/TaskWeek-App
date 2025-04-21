@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import DashboardNavbar from "./DashboardNavbar";
 import DashboardSidebar from "./DashboardSidebar";
 
-import "../../styles/DashboardLayout.css";
+import "./DashboardLayout.css";
 
 const DashboardLayout = () => {
   const [sidebarVisible, setSidebarVisible] = useState(false);

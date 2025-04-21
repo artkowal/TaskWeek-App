@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import welcomeImage from "../../assets/taskweek_icon-100.png";
 
-import "../../styles/Login.css";
+import "./Login.css";
 
 const Login = () => {
   const { login } = useAuth();

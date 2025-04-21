@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import api from "../../api";
+import api from "../../services/api";
 
 const AddTaskModal = ({ show, onHide }) => {
   const [title, setTitle] = useState("");

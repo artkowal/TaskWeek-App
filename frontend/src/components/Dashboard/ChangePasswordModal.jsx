@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Alert, Spinner } from "react-bootstrap";
-import api from "../../api";
+import api from "../../services/api";
 import { useAuth } from "../../contexts/AuthContext";
 
 const ChangePasswordModal = ({ show, onHide }) => {

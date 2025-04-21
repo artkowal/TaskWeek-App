@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import WeekView from "../Schedule/WeekView";
 import TodoList from "../Todo/TodoList";
-import useWindowSize from "../hooks/UseWindowSize";
+import useWindowSize from "../hooks/useWindowSize";
 
-import "../../styles/Dashboard.css";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const [todoCollapsed, setTodoCollapsed] = useState(false);

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import welcomeImage from "../../assets/task-list.png";
 
-import "../../styles/WelcomeScreen.css";
+import "./WelcomeScreen.css";
 
 const WelcomeScreen = () => {
   return (

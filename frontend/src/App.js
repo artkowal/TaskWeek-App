@@ -10,6 +10,11 @@ import Layout from "./components/Layout/Layout";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import WelcomeScreen from "./components/Layout/WelcomeScreen";
 
+const RedirectToDashboardOrWelcome = () => {
+  const { user } = useAuth();
+  return user ? <Navigate to="/dashboard" /> : <Navigate to="/welcome" />;
+};
+
 function App() {
   return (
     <AuthProvider>
@@ -38,10 +43,5 @@ function App() {
     </AuthProvider>
   );
 }
-
-const RedirectToDashboardOrWelcome = () => {
-  const { user } = useAuth();
-  return user ? <Navigate to="/dashboard" /> : <Navigate to="/welcome" />;
-};
 
 export default App;

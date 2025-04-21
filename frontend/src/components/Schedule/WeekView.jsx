@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DndContext, DragOverlay, closestCenter } from "@dnd-kit/core";
-import api from "../../api";
+import api from "../../services/api";
 import EventModal from "./EventModal";
 import EventDetailsModal from "./EventDetailsModal";
 import DroppableColumn from "./DroppableColumn";
@@ -9,7 +9,7 @@ import EventCard from "./EventCard";
 import WeekHeader from "./WeekHeader";
 import { List } from "lucide-react";
 
-import "../../styles/WeekView.css";
+import "./WeekView.css";
 
 const daysOfWeek = [
   { label: "Poniedziałek", value: 1 },

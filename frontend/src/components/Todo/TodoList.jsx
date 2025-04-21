@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import api from "../../api";
+import api from "../../services/api";
 import { Plus } from "lucide-react";
 import TaskItem from "./TaskItem";
 import AddTaskModal from "./AddTaskModal";
-import useWindowSize from "../hooks/UseWindowSize";
+import useWindowSize from "../hooks/useWindowSize";
 
-import "../../styles/TodoList.css";
+import "./TodoList.css";
 
 const TodoList = ({ collapsed }) => {
   const [tasks, setTasks] = useState([]);

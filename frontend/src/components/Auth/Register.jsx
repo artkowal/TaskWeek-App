@@ -3,7 +3,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
-import "../../styles/Register.css";
+import "./Register.css";
 
 const Register = () => {
   const { register } = useAuth();

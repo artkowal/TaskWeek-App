@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import api from "../../api";
+import api from "../../services/api";
 
-import "../../styles/EventModal.css";
+import "./EventModal.css";
 
 const EventModal = ({ show, onHide, eventData, onSaveSuccess }) => {
   const isEditMode = !!eventData?.id;

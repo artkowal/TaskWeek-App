@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
-import api from "../../api";
+import api from "../../services/api";
 import { User } from "lucide-react";
 import "./ChangePasswordModal";
 import ChangePasswordModal from "./ChangePasswordModal";
 
-import "../../styles/DashboardSidebar.css";
+import "./DashboardSidebar.css";
 
 const DashboardSidebar = () => {
   const { user, checkAuth } = useAuth();

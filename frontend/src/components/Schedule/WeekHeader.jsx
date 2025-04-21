@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CalendarClock } from "lucide-react";
 
-import "../../styles/WeekHeader.css";
+import "./WeekHeader.css";
 
 const WeekHeader = () => {
   const [now, setNow] = useState(new Date());

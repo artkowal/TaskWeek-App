@@ -1,7 +1,7 @@
 import React from "react";
 import { CheckSquare, Square, Trash } from "lucide-react";
 
-import "../../styles/TaskItem.css";
+import "./TaskItem.css";
 
 const TaskItem = ({ task, onToggle, onDelete }) => {
   const handleToggle = (e) => {

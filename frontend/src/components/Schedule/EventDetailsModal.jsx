@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Clock, FileText } from "lucide-react";
 
-import "../../styles/EventDetailsModal.css";
+import "./EventDetailsModal.css";
 
 const EventDetailsModal = ({ show, onHide, event, onEdit }) => {
   if (!event) return null;
