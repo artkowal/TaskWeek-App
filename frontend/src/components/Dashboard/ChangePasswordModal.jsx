@@ -63,9 +63,9 @@ const ChangePasswordModal = ({ show, onHide }) => {
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               required
-              minLength={6}
+              minLength={4}
             />
-            <Form.Text className="text-muted">Minimum 6 znaków.</Form.Text>
+            <Form.Text className="text-muted">Minimum 4 znaki.</Form.Text>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
