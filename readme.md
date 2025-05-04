@@ -34,6 +34,15 @@ This project is built with a modern JavaScript stack:
 
 ## ✨ Live Demo & Screenshots
 
+| Welcome Screen | Login Screen | Dashboard (Desktop) |
+|:--------------:|:------------:|:-------------------:|
+| ![TW_WelcomeScreen](https://github.com/user-attachments/assets/453bf297-e72a-4845-9a94-fea696d4ec63) | ![TW_Login](https://github.com/user-attachments/assets/4912af37-c293-4338-945e-26789ffbf496) | ![TW_Dashboard](https://github.com/user-attachments/assets/577dd4b5-5be3-4358-bc0b-e19200cd2445) |
+
+| Dashboard (Mobile) | Small-screen To-Do | Sidebar |
+|:-----------------:|:-----------------:|:-------:|
+| ![TW_Dashboard_Small](https://github.com/user-attachments/assets/fa67cf33-1aa8-4df5-9cb0-f4215fb2b3cb) | ![TW_Dashboard_Small_TodoList](https://github.com/user-attachments/assets/7fddab62-5090-4f02-be8c-b7b7599a9cdf) | ![TW_Sidebar](https://github.com/user-attachments/assets/fa781ee9-b46d-4f44-a5fb-71652b0cadf9) |
+
+
 ## 🎯 Features
 
 - **User Authentication**
