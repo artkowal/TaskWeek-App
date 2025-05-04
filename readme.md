@@ -80,7 +80,7 @@ The frontend will run by default at http://localhost:3000.
 
 ```bash
 # Clone the backend repository
-git clone https://github.com/Dzejkop02/task-week-back.git backend
+git clone https://github.com/Dzejkop02/task-week-back.git
 
 # Install dependencies
 npm install
